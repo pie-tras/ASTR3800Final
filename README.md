@@ -21,6 +21,7 @@ The G-Band, H-Band and K-Band refer to Fraunhofer lines which are composed of se
 
 The object of interest to this project is the galaxy pictured in (Fig. 1), which spectral data from the SDSS data release 12 was provided. Analysis was done on only this single spectra. The data is in a FITS file format containing multiple columns but for this analysis only flux and wavelengths are needed.
 
+![](images/fig1.png)
 ***Fig. 1** SDSS galaxy 0429-51817-01. RA and Dec coordinates are labeled in yellow.*
 
 ### 
@@ -29,7 +30,7 @@ The object of interest to this project is the galaxy pictured in (Fig. 1), which
 
 Using the *astropy.io* library the provided SDSS fits file was loaded into python and extracted for wavelength and flux data. These based on the header file are in units of Angstrom and 1E-17 erg/cm^2/s/Angstrom respectively. The following figure was produced with this data (Fig 2).
 
-![][image1]  
+![](images/fig2.png)
 ***Fig 2\.** Flux vs Wavelength of SDSS Galaxy: 0429-51817-01*
 
 #### 
@@ -38,20 +39,20 @@ Using the *astropy.io* library the provided SDSS fits file was loaded into pytho
 
 From the emission and absorption table in (Sec. 1), these specific wavelengths were marked by dashed vertical lines at the correct locations across the flux data producing (Fig. 3). Emissions were grouped on the left and absorptions on the right. Each feature has a unique color and label.
 
-![][image2]  
+![](images/fig3.png)
 ***Fig 3\.*** Emission and absorption wavelengths of interest across the flux data. These wavelengths are not redshifted. 
 
 #### 2.2. Evaluating Emission / Absorption Line Prominence
 
 From the result in (Sec. 2.1), the flux was sliced around emission and absorption lines. This yields a much better understanding of how the flux is shifted overall and what lines likely match up to what features on the flux data. The following figure (Fig. 4\) is the result of this. O III and H-Beta emission is the top left, S II, H-Alpha and N II emission is top right. Na, Mg, G-Band, H-Band and K-band absorption, bottom left. Ca II absorption bottom right.
 
-![][image3]  
-![][image4]  
+![](images/fig4-1.png)
+![](images/fig4-2.png)
 **Fig 4\.** *Flux around emissions and absorptions. Matching features are now clearly visible.*  
 For better determination of the spectral peaks and troughs: a smoothed flux was then computed using a gaussian filter with a two sigma parameter and (Fig. 4\) was recreated to verify that the smoothing operation did not discard spectral features. This is displayed in (Fig. 5).
 
-![][image5]  
-![][image6]  
+![](images/fig5-1.png)
+![](images/fig5-2.png)
 **Fig 5\.** *Smoothed flux around emissions and absorptions.* 
 
 #### 2.3. Determine Redshift Values
@@ -73,7 +74,15 @@ In the order of the ranking the following process took place:
 
 This produced the following series of graphs (Fig 6).
 
-**Fig. 6** *Red Shifted wavelengths found*  
+![](images/fig6-1.png)
+![](images/fig6-2.png)
+![](images/fig6-3.png)
+![](images/fig6-4.png)
+![](images/fig6-5.png)
+![](images/fig6-6.png)
+![](images/fig6-7.png)
+**Fig. 6** *Red Shifted wavelengths found*
+![](images/fig7.png)
 **Fig. 7** *Compiled red shifted spectral lines overlaid on original flux.*
 
 Compiling these results created the above (Fig. 7). The O III and H-Beta bands as discussed earlier were discarded.
@@ -101,14 +110,15 @@ Computing the mean of this set of data yields: **z \= 1.6914E-02**
 The standard deviation of the previously computed mean was found to be 2.7623E-04.  
 Visually this was compiled into (Fig. 8). A box plot shows a single standard deviation and average value while a scatter plot marks each respective spectral line’s computed z value.
 
+![](images/fig8.png)
 **Fig 8\.** *Box plot of mean redshift value. Each spectral line z value is scatter plotted.*
 
 #### 3.1 How the Uncertainty Scales
 
 The number of spectral lines used was rather arbitrary. A large group were tested for and most were successfully processed. Does the amount of spectral lines significantly change the uncertainty (Fig. 9). Yes it does. This result appears to indicate that past six lines a trend starts to form where the standard deviation is inversely proportional to line count. Six lines could indicate a threshold of statistical significance however more points would be needed to see if the trend past this point continues.
 
-![][image7]  
-![][image8]  
+![](images/fig9-1.png)
+![](images/fig9-2.png)
 **Fig 9\.** *Uncertainty and z-value with number of lines. Bottom plots are zoomed versions of top.*
 
 #### 3.2. Systematic Differences Between Different Lines
@@ -123,7 +133,7 @@ Absorption z value standard deviation: 1.0473E-04
 
 Creating a graphic of this analysis the following was made (Fig. 10). The left box plot is absorption originating z-values and the right box plot is emission originating z-values.
 
-![][image9]  
+![](images/fig10.png)
 **Fig 10\.** *Absorption v Emission Redshift computation.*
 
 Although the spread of the emission z-values is narrower, the average values are largely the same and the error bars of each overlap the other. If there was a significant difference between the two groups it would be expected that these plots would be largely separated on the z axis.  
@@ -134,7 +144,7 @@ In other words, absorption or emission does not differently compute redshift.
 #### 3.3. Significant Trends With Wavelength
 
 Another interesting point to look into would be whether wavelength gives any trend to the z-value. For this the wavelengths and corresponding resulting z-values were arranged into matching sorted arrays of descending wavelength. A linear and a cubic fit were computed using np.polyfit and the resulting figure produced. (Fig. 11).  
-![][image10]  
+![](images/fig11.png) 
 **Fig 11\.** *Redshift value trends with wavelength. A linear and cubic fit were computed.*
 
 Visually both of these fits do not match the raw data very well. This conclusion can be further supported by computing the chi^2 and p-value for each fit:
